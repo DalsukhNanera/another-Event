@@ -11,56 +11,61 @@
     <div class="box">
         <div class="sidebar">
             <div class="Child" (click)="Eventshow('EmployeeEvent')">
-                <button type="button" class="Item" Id="Upcoming-Events" >&nbsp; &nbsp; <fa-icon class="iconclass"  [icon]="IconHome"></fa-icon>&nbsp; <b>Home</b></button>
+                <button type="button" class="Item" Id="Upcoming-Events">&nbsp; &nbsp; <fa-icon class="iconclass"
+                        [icon]="IconHome"></fa-icon>&nbsp; <b>Home</b></button>
             </div>
             <div class="Child" (click)="Eventshow('Upcoming-Events')">
-                <button type="button" class="Item" Id="Upcoming-Events" >&nbsp; &nbsp; <fa-icon class="iconclass"  [icon]="IconfaCalendarDays"></fa-icon>&nbsp; <b>Upcoming</b></button>
+                <button type="button" class="Item" Id="Upcoming-Events">&nbsp; &nbsp; <fa-icon class="iconclass"
+                        [icon]="IconfaCalendarDays"></fa-icon>&nbsp; <b>Upcoming</b></button>
             </div>
             <div class="Child" (click)="Eventshow('Ongoing-Events')">
-                <button type="button" class="Item" Id="Ongoing-Events" >
-                    &nbsp; &nbsp; <fa-icon class="iconclass"  [icon]="IconfaCalendarDays"></fa-icon>&nbsp; <b>Ongoing Events</b></button>
+                <button type="button" class="Item" Id="Ongoing-Events">
+                    &nbsp; &nbsp; <fa-icon class="iconclass" [icon]="IconfaCalendarDays"></fa-icon>&nbsp; <b>Ongoing
+                        Events</b></button>
             </div>
 
         </div>
 
         <div class="Componentdata">
 
-            <div *ngIf="EventData" class="my-class">
+            <div *ngIf="EventData.length > 0" class="my-class">
                 <h2 style="text-align: center;margin-bottom: 21px;margin-top: 10px;"> {{Flag}} </h2>
 
                 <div class="tbl">
-                <table class="table table-bordered tb-custom table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Index</th>
-                            <th scope="col">EventName</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">StartDate</th>
-                            <th scope="col">EndDate</th>
-                            
-        
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let obj of EventData;let i = index">
-                            <td>{{i+1}}</td>
-                            <td>{{obj.Name}}</td>
-                            <td>{{obj.Description}}</td>
-                            <td>{{obj.StartDate.toString().slice(0,11)}}</td>
-                            <td>{{obj.EndDate.toString().slice(0,11)}} </td>
-                           <td>  <button type="button" class="Item" Id="view-more" class="btn btn-outline-secondary" (click)=" viewmore(i)" >Show More &nbsp; <fa-icon [icon]="IconInfo"></fa-icon></button></td>
-                        </tr>
-        
-                    </tbody>
-                </table>
-            </div>
-            </div>
-        
-            <div *ngIf="Message" class="Message mt-3" style="color: red;"><b> {{Message}}</b>
+                    <table class="table table-bordered tb-custom table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Index</th>
+                                <th scope="col">EventName</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">StartDate</th>
+                                <th scope="col">EndDate</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let obj of EventData;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{obj.Name}}</td>
+                                <td>{{obj.Description}}</td>
+                                <td>{{obj.StartDate.toString().slice(0,11)}}</td>
+                                <td>{{obj.EndDate.toString().slice(0,11)}} </td>
+                                <td> <button type="button" class="Item" Id="view-more" class="btn btn-outline-secondary"
+                                        (click)=" viewmore(i)">Show More &nbsp; <fa-icon
+                                            [icon]="IconInfo"></fa-icon></button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
-        
-            
-           
+            </div>
+
+            <div *ngIf="Message" class="Message mt-3" style="color: red;"><b> {{Message}}</b>
+            </div>
+
+
+
 
         </div>
 

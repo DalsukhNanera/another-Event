@@ -110,7 +110,7 @@ export class AddPriceComponent {
   }
 
   //this API is called for adding a price at the end 
-  submitForm(): void {
+  async submitForm(): Promise<void> {
     this.submitetd = true;
     console.log("i am in submit form");
     console.log(this.userForm.value);
@@ -130,7 +130,7 @@ export class AddPriceComponent {
       }
       console.log("ok");
 
-      this.service.PublishOrAddPrice(obj).subscribe(
+     await this.service.PublishOrAddPrice(obj).subscribe(
         {
           next: (data: any) => {
 
@@ -151,6 +151,7 @@ export class AddPriceComponent {
 
         }
       );
+      this.EventChange();
 
     }
 

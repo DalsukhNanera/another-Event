@@ -21,7 +21,7 @@ export class UserDashboardComponent {
   //message for storing message which is coming from API.
   Message!: any;
   //List of Event data which is coming fom API.
-  EventData!:any;
+  EventData:EventEntity[] = [];
   //flag which willd decide that which component to show 
   //this flag will change from HTML buttons 
   // from this we will also show the heading to the HTML page 
@@ -39,8 +39,8 @@ export class UserDashboardComponent {
   //this is when user click on any button this will set the flag and then call the api upon this and this will show event based upon that
 Eventshow(flag:string)
 {
-  this.EventData = null;
-  console.log(this.EventData);
+ 
+ 
   //if flag is EmployeeEvent show we want to show heading as ALl Eevnts that's why we change the flag 
   if(flag == "EmployeeEvent")
     {
@@ -55,14 +55,20 @@ Eventshow(flag:string)
     let obj = {
       Flag: flag 
     }
+  
     this.service.showEventOrActivity(obj).subscribe(
       {
+        
         next: (data: any) => {
+         console.log("i am here");
           if (data.ID == 1) {
+            console.log("in positive")
             this.EventData = data.ArrayOfResponse;
           }
           else if(data.ID == 0){
-            this.EventData = undefined!  ;
+            console.log("in nagative");
+           this.EventData = [];
+           
             this.Message = data.Message;
           }
           else{

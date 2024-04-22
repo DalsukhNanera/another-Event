@@ -36,7 +36,8 @@ export class PublishComponent {
   //this is function for fetching all the events
   getEvents()
   {
-    this.Message = null;
+    debugger
+   
 
     
     let obj = {
@@ -65,7 +66,7 @@ export class PublishComponent {
   }
 
   //this is called for publish the Event
-  submitForm(): void {
+  async submitForm(): Promise<void> {
     this.submitetd = true;
     console.log("i am in submit form");
     console.log(this.userForm.value);
@@ -86,14 +87,16 @@ export class PublishComponent {
         Flag: "Publish"
       }
       console.log("ok");
-      this.service.PublishOrAddPrice(obj).subscribe(
+     await this.service.PublishOrAddPrice(obj).subscribe(
         {
           next: (data: any) => {
 
                 if(data.ID != -1)
                   {
+                    debugger
+                
                     this.Message = data.Message;
-                  
+                    
                   }
                   else{
                     this.Message = "something went wrong";
@@ -111,9 +114,16 @@ export class PublishComponent {
           }
 
         }
+
+        
       );
 
+      this.getEvents();
+     
+
     }
+
+
 
   }
 
